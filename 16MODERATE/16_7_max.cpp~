@@ -1,0 +1,21 @@
+#include<iostream>
+#include<ctime>
+using namespace std;
+int max(int a,int b){
+	int dif=a-b;
+	int signA=(a>>31)&1,signB=(b>>31)&1,signAB=(dif>>31)&1;//1 for neg,0 for pos
+	cout<<signA<<" "<<signB<<" "<<signAB<<endl;
+	return a*signAB^1+b*signAB;
+}
+
+int main(int argc,char *argv[])
+{
+ 	if(argc!= 3 ){cerr<<"Format: "<<argv[0]<<" < > "<<endl;exit(-1);}
+ 	int a=atoi(argv[1]),b=atoi(argv[2]);
+	srand(time(NULL));
+ 	clock_t start=clock();
+	
+	cout<<max(a,b)<<endl;
+ 	cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ 	return 0;
+}

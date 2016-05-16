@@ -1,0 +1,14 @@
+#include<iostream>
+#include<ctime>
+using namespace std;
+int main(int argc,char *argv[])
+{
+ 	if(argc!= 1 ){cerr<<"Format: "<<argv[0]<<" < > "<<endl;exit(-1);}
+	srand(time(NULL));
+ 	clock_t start=clock();
+    int 
+
+
+ 	cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ 	return 0;
+}

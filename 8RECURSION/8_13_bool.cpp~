@@ -1,0 +1,43 @@
+#include<iostream>
+#include<string>
+#include<ctime>
+using namespace std;
+
+int count(string expr,int result){
+	if(expr.length()==0)
+		return 0;
+	if(expr.length()==1)
+		return (expr[0]-'0')==result?1:0;
+	int ways=0;
+	for(int i=1;i<expr.length();i+=2){
+		char opr=expr[i];
+		string 	l=expr.substr(0,i),
+				r=expr.substr(i+1,expr.length());//actually is expr.length-i-1
+		int lt=count(l,1),
+			lf=count(l,0),
+			rt=count(r,1),
+			rf=count(r,0),
+			total=(lt+lf)*(rt+rf);
+		int tr;
+		if(opr=='&')
+			tr=lt*rt;
+		else if(opr=='|')
+			tr=lt*rt+lt*rf+lf*rt;
+		else if(opr=='^')
+			tr=lt*rf+lf*rt;
+		int subways=result?tr:total-tr;
+		ways+=subways;
+	}
+	return ways;
+}
+
+int main(int argc,char *argv[])
+{
+ 	if(argc!= 1 ){cerr<<"Format: "<<argv[0]<<" < > "<<endl;exit(-1);}
+ 	clock_t start=clock();
+
+	cout<<count("1^0|0|1",0)<<endl;
+
+ 	cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ 	return 0;
+}

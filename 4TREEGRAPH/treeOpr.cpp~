@@ -1,0 +1,78 @@
+#include<iostream>
+#include<ctime>
+using namespace std;
+
+
+template<class type>
+class treeNode{
+	public:
+		type d;
+		treeNode * l;
+		treeNode * r;
+		treeNode(type n):d(n),l(NULL),r(NULL){}
+		~treeNode(){}
+};
+template<class type>
+class tree{
+	public:
+		treeNode<type> * root;
+		tree():root(NULL){}
+		~tree(){}
+		
+		void insert(treeNode<type> *& cur,int a){
+			treeNode<type> * child=new treeNode<type>(a);
+			if(cur==NULL){
+				cur=child;
+				return;
+			}
+			if(cur->d > a)
+				insert(cur->l,a);
+			else 
+				insert(cur->r,a);
+		}
+		
+		void traverse(treeNode<type> *cur,int *&arr){
+			if(cur==NULL)
+				return;
+			traverse(cur->l,arr);
+			*arr++=cur->d;
+			traverse(cur->r,arr);
+		}
+};
+
+void treeSort(int * arr, int len){
+	tree<int> T;
+	for(int i=0;i<len;i++){
+		T.insert(T.root,arr[i]);
+		}
+	T.traverse(T.root,arr);
+}
+
+void print(int * arr, int len){
+	cout<<'\t';
+ 	for (int i=0;i<len;i++)
+ 		cout<<arr[i]<<' ';
+ 	cout<<endl<<endl;
+}
+
+int main(int argc,char *argv[])
+{
+if(argc!=2){
+		cerr<<"Format: "<<argv[0]<<" <size of array>"<<endl;
+		exit(-1);
+	}
+	int N=atoi(argv[1]);
+ 	//srand(time(NULL));
+ 	cout<<N<<" unsorted numbers:"<<endl;
+ 	int *arr=new int[N],*cpy=new int[N];
+ 	for (int i=0;i<N;i++)
+ 		arr[i]=rand()%(2*N)-N;
+ 	print(arr,N);
+
+ 	clock_t	start =clock();
+
+ 	treeSort(arr,N);
+
+ 	cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ 	return 0;
+}

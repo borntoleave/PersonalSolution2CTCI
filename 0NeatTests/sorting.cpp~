@@ -1,0 +1,178 @@
+#include<iostream>
+#include<ctime>
+#define N 100
+using namespace std;
+void swap(int &a,int &b);
+void arrCpy(int *a,int *b,int len);
+void print(int * arr, int len);
+
+void bubbleSort(int * arr, int len);
+void insersionSort(int * arr, int len);
+void selectionSort(int * arr, int len);
+void quickSort(int * arr, int begin, int end);
+void mergeSort(int * arr, int begin, int end);
+void heapSort(int * arr, int len);
+	void maxHeapify(int * arr, int start, int end);
+//to be finished
+void radixSort(int *arr, int len);
+void bucketSort();
+void cocktailSort();
+void treeSort();
+void combSort();
+
+int main()
+{
+ srand(time(NULL));
+ int *arr=new int[N],*cpy=new int[N];
+ cout<<"Unsorted:\t";
+ for (int i=0;i<N;i++){
+ 	arr[i]=rand()%N;
+ 	cout<<arr[i]<<' ';
+ 	}
+ cout<<endl;
+ clock_t start;
+ //bubbleSort
+ arrCpy(cpy,arr,N);cout<<"BubbleSort:\t";start=clock();
+ bubbleSort(cpy, N);
+ cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ print(cpy,N);
+
+ //insersionSort
+ arrCpy(cpy,arr,N);cout<<"InsersionSort:\t";start=clock();
+ insersionSort(cpy, N);
+ cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ //print(cpy,N);
+
+  //selectionSort
+ arrCpy(cpy,arr,N);cout<<"SelectionSort:\t";start=clock();
+ selectionSort(cpy, N);
+ cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ //print(cpy,N);
+ 
+ //quickSort
+ arrCpy(cpy,arr,N);cout<<"QuickSort:\t";start=clock();
+ quickSort(cpy, 0, N-1);
+ cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ print(cpy,N);
+ 
+ //mergeSort
+ arrCpy(cpy,arr,N);cout<<"MergeSort:\t";start=clock();
+ mergeSort(cpy, 0, N-1);
+ cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ //print(cpy,N);
+
+ //heapSort
+ arrCpy(cpy,arr,N);cout<<"HeapSort:\t";start=clock();
+ heapSort(cpy, N);
+ cout<<(clock()-start)/(double)(CLOCKS_PER_SEC / 1000)<<" ms."<<endl;
+ //print(cpy,N);
+ 
+ delete[] arr;
+ delete[] cpy;
+}
+
+void swap(int &a,int &b){
+ int temp=a;
+ a=b;
+ b=temp;
+}
+
+void arrCpy(int *a,int *b,int len){
+ for (int i=0;i<len;i++)
+ 	a[i]=b[i];
+}
+
+void print(int * arr, int len){
+ for (int i=0;i<len;i++)
+ 	cout<<arr[i]<<' ';
+ cout<<endl;
+}
+
+void bubbleSort(int * arr, int len){
+ for(int i=0;i<len;i++)
+ 	for(int j=i+1;j<len;j++)
+ 		if(arr[i]>arr[j])
+ 			swap(arr[i],arr[j]);
+}
+
+void insersionSort(int * arr, int len){
+ for(int i=0;i<len;i++){
+ 	int temp=arr[i];
+ 	int j;
+ 	for(j=i-1;j>=0&&arr[j]>temp;j--)
+ 		arr[j+1]=arr[j];
+ 	arr[j+1]=temp;
+ 	}
+}
+
+void selectionSort(int * arr, int len){
+ for(int i=0;i<len;i++){
+ 	int min=i;
+ 	for(int j=i+1;j<len;j++)
+ 		if(arr[j]<arr[min])
+ 			min=j;
+ 	swap(arr[i],arr[min]);
+	}
+}
+
+void quickSort(int * arr, int begin, int end){
+ if(begin>=end)
+ 	return;
+ int pivot=arr[begin],left=begin,right=end,current=begin+1;
+ while(current<=right){
+ 	if(arr[current]<pivot&&current<=right){
+ 		arr[left++]=arr[current++];
+ 		}
+ 	else if(arr[current]>=pivot&&current<=right){
+ 		swap(arr[right--],arr[current]);
+ 		}
+ 	}
+ 	arr[left]=pivot;
+ quickSort(arr,begin,left-1);
+ quickSort(arr,left+1,end);
+}
+
+void mergeSort(int * arr, int begin, int end){
+ //print(arr,end-begin+1);
+ if(begin>=end)
+ 	return;
+ int mid=begin+(end-begin)/2;
+ mergeSort(arr,begin,mid);
+ mergeSort(arr,mid+1,end);
+ int p1=begin,p2=mid+1,current=begin,* sorted=new int [end-begin+1];
+ while(p1<=mid&&p2<=end)
+	sorted[current++]= arr[p1]<arr[p2]?arr[p1++]:arr[p2++];
+ while(p1<=mid)
+ 	sorted[current++]=arr[p1++];
+ while(p2<=end)
+ 	sorted[current++]=arr[p2++];
+ for(int i=begin;i<=end;i++)
+ 	arr[i]=sorted[i];
+}
+
+void maxHeapify(int * arr, int start, int end){
+ int dad=start, son=start*2+1;
+ while(son<end){
+	if(son+1<end && arr[son]<arr[son+1])
+		son++;
+	if(arr[dad]<=arr[son]){
+		swap(arr[dad],arr[son]);
+		dad=son;
+		son=dad*2+1;
+		}
+	else return;
+ 	}
+}
+
+void heapSort(int * arr, int len){
+ for(int i=len/2;i>=0;i--){
+ 	maxHeapify(arr,i,len);
+ 	//print(arr,len);
+ 	}
+ 	//cout<<endl;
+ for(int i=len-1;i>0;i--){
+ 	swap(arr[0],arr[i]);
+ 	maxHeapify(arr,0,i);
+ 	//print(arr,len);
+ 	}
+}

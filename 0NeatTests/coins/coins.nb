@@ -1,0 +1,604 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     21937,        595]
+NotebookOptionsPosition[     20583,        545]
+NotebookOutlinePosition[     21003,        563]
+CellTagsIndexPosition[     20960,        560]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"n", "=", "100"}], ";"}]], "Input",
+ CellChangeTimes->{{3.656848147913493*^9, 3.656848150077942*^9}, 
+   3.6568481960838213`*^9, {3.656848744411343*^9, 3.656848766532853*^9}, {
+   3.6568495558271093`*^9, 3.65684960631467*^9}, {3.656849849197126*^9, 
+   3.656849857224606*^9}, {3.656850256721877*^9, 3.656850260785075*^9}, 
+   3.656851372848462*^9, 3.6568514159398203`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"try", "[", "values_", "]"}], ":=", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"confList", "=", 
+     RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"c", "=", "1"}], ",", 
+      RowBox[{"c", "<=", 
+       RowBox[{"Length", "[", "config", "]"}]}], ",", 
+      RowBox[{"c", "++"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"sum", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"v", "=", "1"}], ",", 
+         RowBox[{"v", "\[LessEqual]", 
+          RowBox[{"Length", "[", "values", "]"}]}], ",", 
+         RowBox[{"v", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"s", "=", 
+           RowBox[{
+            RowBox[{"config", "[", 
+             RowBox[{"[", "c", "]"}], "]"}], ".", 
+            RowBox[{"values", "[", 
+             RowBox[{"[", "v", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"!", 
+             RowBox[{"MemberQ", "[", 
+              RowBox[{"sum", ",", "s"}], "]"}]}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"sum", ",", "s"}], "]"}], ",", 
+            RowBox[{"Goto", "[", "break", "]"}]}], "\[IndentingNewLine]", 
+           "]"}]}]}], "\[IndentingNewLine]", "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"confList", ",", 
+         RowBox[{"config", "[", 
+          RowBox[{"[", "c", "]"}], "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Label", "[", "break", "]"}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Valid conformations: \>\"", ",", 
+      RowBox[{"Length", "[", "confList", "]"}]}], "]"}]}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.656848273124456*^9, 3.656848314474883*^9}, {
+   3.656848374336121*^9, 3.656848384400488*^9}, {3.656848455729803*^9, 
+   3.656848739186968*^9}, {3.65684905655446*^9, 3.656849078490779*^9}, {
+   3.656849111832817*^9, 3.656849153663068*^9}, {3.656849374002617*^9, 
+   3.656849405261297*^9}, {3.6568494983280373`*^9, 3.6568495200499907`*^9}, {
+   3.6568496228376083`*^9, 3.656849637710311*^9}, 3.656850105482811*^9, {
+   3.6568501442779293`*^9, 3.656850270454672*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"vi", "=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", "2"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"values", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "j", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "k", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "l", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "m", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"l", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"m", ",", "3"}], "}"}]}], "]"}], ",", "4"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Cases of coins in 5 bags: \>\"", ",", 
+   RowBox[{"Length", "[", "values", "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"config", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"i", ",", "j", ",", "k", ",", "l", ",", "m"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", 
+         RowBox[{"2", "i"}], ",", "10"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", 
+         RowBox[{"2", "j"}], ",", "n"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"l", ",", 
+         RowBox[{"2", "k"}], ",", "n"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"m", ",", 
+         RowBox[{"2", "l"}], ",", "n"}], "}"}]}], "]"}], ",", "4"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Possible conformations for 5 bags: \>\"", ",", 
+   RowBox[{"Length", "[", "config", "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"try", "[", "values", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<First 10 conformations: \\n\>\"", ",", 
+   RowBox[{"Grid", "@", 
+    RowBox[{"confList", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ";;", "10"}], "]"}], "]"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MemberQ", "[", 
+  RowBox[{"confList", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "3", ",", "9", ",", "27", ",", "81"}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.656847543246505*^9, 3.656847565758376*^9}, {
+   3.6568489818391657`*^9, 3.65684898288081*^9}, 3.656849194674955*^9, {
+   3.65684948891228*^9, 3.6568494892647667`*^9}, {3.656849541698264*^9, 
+   3.656849542249061*^9}, {3.6568500727936172`*^9, 3.656850079127757*^9}, {
+   3.6568502767688093`*^9, 3.6568503043197536`*^9}, {3.656850372606833*^9, 
+   3.6568503801803923`*^9}, {3.65685054597174*^9, 3.656850546809761*^9}, 
+   3.656850654342125*^9, {3.65685076975464*^9, 3.6568508037965*^9}, 
+   3.656851063375477*^9, {3.65685140865956*^9, 3.6568515146716127`*^9}, {
+   3.656851684189044*^9, 3.656851684468596*^9}, {3.65685195852004*^9, 
+   3.656852012673006*^9}, {3.656852140779314*^9, 3.6568522073067513`*^9}, 
+   3.656852350087144*^9, {3.6568526188899384`*^9, 3.656852624248191*^9}, {
+   3.656852676158774*^9, 3.65685267709361*^9}, {3.6568529372942333`*^9, 
+   3.656852939500512*^9}, 3.656855583432001*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Cases of coins in 5 bags: \"\>", "\[InvisibleSpace]", "243"}],
+  SequenceForm["Cases of coins in 5 bags: ", 243],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.6568510648347073`*^9, 3.656851585952569*^9, 3.656851685386168*^9, 
+   3.656851773525112*^9, {3.656852161122161*^9, 3.656852181316156*^9}, 
+   3.656852521296406*^9, 3.6568526302768497`*^9, 3.656852677808073*^9, 
+   3.656852827816308*^9, 3.6568529402433043`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Possible conformations for 5 bags: \"\>", "\[InvisibleSpace]", 
+   "46326"}],
+  SequenceForm["Possible conformations for 5 bags: ", 46326],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.6568510648347073`*^9, 3.656851585952569*^9, 3.656851685386168*^9, 
+   3.656851773525112*^9, {3.656852161122161*^9, 3.656852181316156*^9}, 
+   3.656852521296406*^9, 3.6568526302768497`*^9, 3.656852677808073*^9, 
+   3.656852827816308*^9, 3.656852940283184*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Valid conformations: \"\>", "\[InvisibleSpace]", "196"}],
+  SequenceForm["Valid conformations: ", 196],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.6568510648347073`*^9, 3.656851585952569*^9, 3.656851685386168*^9, 
+   3.656851773525112*^9, {3.656852161122161*^9, 3.656852181316156*^9}, 
+   3.656852521296406*^9, 3.6568526302768497`*^9, 3.656852677808073*^9, 
+   3.656852827816308*^9, 3.656852964372587*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"First 10 conformations: \\n\"\>", "\[InvisibleSpace]", 
+   TagBox[GridBox[{
+      {"1", "3", "9", "27", "81"},
+      {"1", "3", "9", "27", "82"},
+      {"1", "3", "9", "27", "83"},
+      {"1", "3", "9", "27", "84"},
+      {"1", "3", "9", "27", "85"},
+      {"1", "3", "9", "27", "86"},
+      {"1", "3", "9", "27", "87"},
+      {"1", "3", "9", "27", "88"},
+      {"1", "3", "9", "27", "89"},
+      {"1", "3", "9", "27", "90"}
+     },
+     AutoDelete->False,
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+    "Grid"]}],
+  SequenceForm["First 10 conformations: \n", 
+   Grid[{{1, 3, 9, 27, 81}, {1, 3, 9, 27, 82}, {1, 3, 9, 27, 83}, {1, 3, 9, 
+    27, 84}, {1, 3, 9, 27, 85}, {1, 3, 9, 27, 86}, {1, 3, 9, 27, 87}, {1, 3, 
+    9, 27, 88}, {1, 3, 9, 27, 89}, {1, 3, 9, 27, 90}}]],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.6568510648347073`*^9, 3.656851585952569*^9, 3.656851685386168*^9, 
+   3.656851773525112*^9, {3.656852161122161*^9, 3.656852181316156*^9}, 
+   3.656852521296406*^9, 3.6568526302768497`*^9, 3.656852677808073*^9, 
+   3.656852827816308*^9, 3.656852964381906*^9}]
+}, Open  ]],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.6568510821014*^9, 3.656851671891233*^9, 3.656851731033906*^9, 
+   3.656851954653883*^9, 3.656852174024432*^9, 3.656852238337511*^9, {
+   3.656852627089816*^9, 3.6568526545110607`*^9}, 3.6568527023048573`*^9, 
+   3.6568528521760283`*^9, 3.656852964390587*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"vi", "=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", "4"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"values", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "j", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "k", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "l", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"l", ",", "3"}], "}"}]}], "]"}], ",", "3"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Cases of coins in 4 bag: \>\"", ",", 
+   RowBox[{"Length", "[", "values", "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"config", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"i", ",", "j", ",", "k", ",", "l"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", 
+         RowBox[{"2", "i"}], ",", "10"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", 
+         RowBox[{"2", "j"}], ",", "n"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"l", ",", 
+         RowBox[{"2", "k"}], ",", "n"}], "}"}]}], "]"}], ",", "3"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Possible conformations for 4 bags: \>\"", ",", 
+   RowBox[{"Length", "[", "config", "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"try", "[", "values", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<First 10 conformations: \\n\>\"", ",", 
+   RowBox[{"Grid", "@", 
+    RowBox[{"confList", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ";;", "10"}], "]"}], "]"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MemberQ", "[", 
+  RowBox[{"confList", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "10", ",", "100"}], "}"}]}], "]"}]}], "Input",\
+
+ CellChangeTimes->{{3.656847543246505*^9, 3.656847565758376*^9}, {
+   3.6568489818391657`*^9, 3.65684898288081*^9}, 3.656849194674955*^9, {
+   3.65684948891228*^9, 3.6568494892647667`*^9}, {3.656849541698264*^9, 
+   3.656849542249061*^9}, {3.6568500727936172`*^9, 3.656850079127757*^9}, {
+   3.6568502767688093`*^9, 3.6568503043197536`*^9}, {3.656850372606833*^9, 
+   3.6568503801803923`*^9}, {3.656850454691575*^9, 3.65685052813056*^9}, {
+   3.656850608673086*^9, 3.656850643189024*^9}, {3.656850762668604*^9, 
+   3.6568507647707577`*^9}, {3.656850796396551*^9, 3.656850799132073*^9}, 
+   3.656850936245867*^9, 3.656851057870933*^9, {3.656851346314033*^9, 
+   3.6568513628334427`*^9}, 3.656851523120419*^9, {3.656852023856003*^9, 
+   3.656852103705167*^9}, {3.6568522133140078`*^9, 3.656852236914555*^9}, {
+   3.656852266989455*^9, 3.656852269764234*^9}, {3.656852340831511*^9, 
+   3.656852342968924*^9}, {3.656852635873579*^9, 3.6568526421208057`*^9}, {
+   3.656855578991969*^9, 3.656855580064144*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Cases of coins in 4 bag: \"\>", "\[InvisibleSpace]", "81"}],
+  SequenceForm["Cases of coins in 4 bag: ", 81],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.656851082309195*^9, 3.6568515360928497`*^9, {3.6568520268982267`*^9, 
+   3.656852106905983*^9}, {3.656852241762746*^9, 3.6568522706561213`*^9}, 
+   3.656852507945712*^9, 3.656852660705145*^9, 3.656852964602861*^9, 
+   3.656853257313451*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Possible conformations for 4 bags: \"\>", "\[InvisibleSpace]", 
+   "13929"}],
+  SequenceForm["Possible conformations for 4 bags: ", 13929],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.656851082309195*^9, 3.6568515360928497`*^9, {3.6568520268982267`*^9, 
+   3.656852106905983*^9}, {3.656852241762746*^9, 3.6568522706561213`*^9}, 
+   3.656852507945712*^9, 3.656852660705145*^9, 3.656852964602861*^9, 
+   3.656853257322652*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Valid conformations: \"\>", "\[InvisibleSpace]", "2066"}],
+  SequenceForm["Valid conformations: ", 2066],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.656851082309195*^9, 3.6568515360928497`*^9, {3.6568520268982267`*^9, 
+   3.656852106905983*^9}, {3.656852241762746*^9, 3.6568522706561213`*^9}, 
+   3.656852507945712*^9, 3.656852660705145*^9, 3.656852964602861*^9, 
+   3.6568532615892487`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"First 10 conformations: \\n\"\>", "\[InvisibleSpace]", 
+   TagBox[GridBox[{
+      {"1", "2", "13", "26"},
+      {"1", "2", "13", "65"},
+      {"1", "2", "13", "66"},
+      {"1", "2", "13", "67"},
+      {"1", "2", "13", "68"},
+      {"1", "2", "13", "69"},
+      {"1", "2", "13", "70"},
+      {"1", "2", "13", "71"},
+      {"1", "2", "13", "72"},
+      {"1", "2", "13", "73"}
+     },
+     AutoDelete->False,
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+    "Grid"]}],
+  SequenceForm["First 10 conformations: \n", 
+   Grid[{{1, 2, 13, 26}, {1, 2, 13, 65}, {1, 2, 13, 66}, {1, 2, 13, 67}, {1, 
+    2, 13, 68}, {1, 2, 13, 69}, {1, 2, 13, 70}, {1, 2, 13, 71}, {1, 2, 13, 
+    72}, {1, 2, 13, 73}}]],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.656851082309195*^9, 3.6568515360928497`*^9, {3.6568520268982267`*^9, 
+   3.656852106905983*^9}, {3.656852241762746*^9, 3.6568522706561213`*^9}, 
+   3.656852507945712*^9, 3.656852660705145*^9, 3.656852964602861*^9, 
+   3.656853261598897*^9}]
+}, Open  ]],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{
+  3.656851095742097*^9, 3.656851549263727*^9, 3.6568520284961557`*^9, {
+   3.65685206232341*^9, 3.65685211995012*^9}, {3.6568522523192797`*^9, 
+   3.6568522812629967`*^9}, 3.656852521082513*^9, 3.656852665604361*^9, 
+   3.6568529688968287`*^9, 3.6568532616075497`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Some possible conformations are ommited when using current sampling method.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.6568527057308617`*^9, 3.656852808007352*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Grid", "@", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", "2", ",", "13", ",", "26"}], "}"}], ",", "\"\<.\>\"",
+       ",", 
+      RowBox[{"values", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], ",", "\"\<=\>\"", ",", 
+      RowBox[{
+       RowBox[{"values", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ".", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "2", ",", "13", ",", "26"}], "}"}]}]}], "}"}], ",", 
+    
+    RowBox[{"{", 
+     RowBox[{"i", ",", 
+      RowBox[{"Length", "[", "values", "]"}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656853265265643*^9, 3.6568533154590197`*^9}, {
+  3.656853384244673*^9, 3.6568533890130043`*^9}, {3.6568534439042053`*^9, 
+  3.656853496458436*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"vi", "=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", "4"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"values", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "j", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "k", "]"}], "]"}], ",", 
+         RowBox[{"vi", "[", 
+          RowBox[{"[", "l", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"l", ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"m", ",", "3"}], "}"}]}], "]"}], ",", "4"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Cases of coins in 5 bag: \>\"", ",", 
+   RowBox[{"Length", "[", "values", "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"config", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"i", ",", "j", ",", "k", ",", "l"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "i", ",", "10"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "j", ",", "n"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"l", ",", "k", ",", "n"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"m", ",", "l", ",", "n"}], "}"}]}], "]"}], ",", "4"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<Possible conformations for 5 bags: \>\"", ",", 
+   RowBox[{"Length", "[", "config", "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"try", "[", "values", "]"}]}], "Input",
+ CellChangeTimes->{{3.656855514650358*^9, 3.656855545255967*^9}, {
+  3.656855575745418*^9, 3.65685557618443*^9}, {3.6568556183117247`*^9, 
+  3.656855657998845*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Cases of coins in 5 bag: \"\>", "\[InvisibleSpace]", "243"}],
+  SequenceForm["Cases of coins in 5 bag: ", 243],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.656855547891914*^9, 3.656855559290546*^9}, 
+   3.6568556272092323`*^9, 3.656855658674683*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Possible conformations for 5 bags: \"\>", "\[InvisibleSpace]", 
+   "1501540"}],
+  SequenceForm["Possible conformations for 5 bags: ", 1501540],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.656855547891914*^9, 3.656855559290546*^9}, 
+   3.6568556272092323`*^9, 3.6568556593558807`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Valid conformations: \"\>", "\[InvisibleSpace]", "0"}],
+  SequenceForm["Valid conformations: ", 0],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.656855547891914*^9, 3.656855559290546*^9}, 
+   3.6568556272092323`*^9, 3.65685568268032*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell["Using complete conformations still derives null answer.", \
+"Subsubsection",
+ CellChangeTimes->{{3.6568527057308617`*^9, 3.656852808007352*^9}, {
+  3.6568559186170187`*^9, 3.656855938389348*^9}}]
+},
+WindowSize->{1098, 655},
+WindowMargins->{{Automatic, 57}, {36, Automatic}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"10.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (2015\:5e747\
+\:67086\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 406, 7, 28, "Input"],
+Cell[967, 29, 2412, 55, 233, "Input"],
+Cell[CellGroupData[{
+Cell[3404, 88, 3545, 89, 148, "Input"],
+Cell[CellGroupData[{
+Cell[6974, 181, 477, 9, 22, "Print"],
+Cell[7454, 192, 501, 10, 22, "Print"],
+Cell[7958, 204, 465, 9, 21, "Print"],
+Cell[8426, 215, 1169, 27, 191, "Print"]
+}, Open  ]],
+Cell[9610, 245, 314, 5, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9961, 255, 3358, 83, 148, "Input"],
+Cell[CellGroupData[{
+Cell[13344, 342, 453, 9, 22, "Print"],
+Cell[13800, 353, 483, 10, 22, "Print"],
+Cell[14286, 365, 451, 9, 21, "Print"],
+Cell[14740, 376, 1071, 27, 191, "Print"]
+}, Open  ]],
+Cell[15826, 406, 321, 5, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16184, 416, 176, 3, 35, "Subsubsection"],
+Cell[16363, 421, 795, 22, 28, "Input"],
+Cell[CellGroupData[{
+Cell[17183, 447, 2186, 61, 114, "Input"],
+Cell[CellGroupData[{
+Cell[19394, 512, 306, 6, 22, "Print"],
+Cell[19703, 520, 340, 7, 22, "Print"],
+Cell[20046, 529, 293, 6, 21, "Print"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[20378, 540, 201, 3, 35, "Subsubsection"]
+}
+]
+*)
+
+(* End of internal cache information *)

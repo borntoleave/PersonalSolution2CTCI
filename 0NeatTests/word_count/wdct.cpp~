@@ -1,0 +1,54 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<cctype>
+#include<map>
+using namespace std;
+string process(string orig)
+{
+ int len=orig.length();
+ for(int i=0;i<len;i++){
+ 	if(orig[i]>='A'&&orig[i]<='Z')//to lower case
+ 		orig[i]=orig[i]-('A'-'a');
+ 	if(ispunct(orig[i]))//remove punctuations
+ 		orig[i]='\0';
+ 	}
+ return orig;
+}
+
+int main(int argc,char * argv[])
+{
+ if(argc!=2){
+ 	cerr<<"Format: "<<argv[0]<<" <textfile>"<<endl;exit(-1);}
+ ifstream in(argv[1],ios::in);
+ if(in.fail()){
+ 	cerr<<"Cannot open file!"<<endl;exit(-2);}
+ string buffer;
+ int nWord=0;
+ map<string,int> wc;
+ while(in>>buffer){
+ 	buffer=process(buffer);
+	if (wc.find(buffer)!=wc.end())
+		wc[buffer]++;
+	else 
+		wc.insert(make_pair(buffer,1));//words are automatically sorted
+ 	nWord++;
+	}
+ cout<<nWord<<" words:"<<endl;
+ for(map<string,int>::iterator it=wc.begin();it!=wc.end();it++)
+ 	cout<<it->first<<' '<<it->second<<'\t';
+ cout<<endl;
+
+ string s="\"Hello world!\"     haha.";
+ int i=0;
+ while(s[i]!='\0'){
+ 	string temp="";
+	while(s[i]==' '||ispunct(s[i]))
+		i++;
+	while(s[i]!=' '&&!ispunct(s[i])&&s[i]!='\0')
+		temp+=s[i++];
+	
+	cout<<temp;		
+ 	}
+ cout<<endl;
+}

@@ -1,0 +1,10 @@
+#include"treeNode.h"
+int main()
+{
+ int *arr=new int[20];
+ for(int i=0;i<20;i++)
+ 	arr[i]=i;
+ tree<int> T;
+ T.root=T.buildFromArray(arr,0,19);
+ T.print(T.root);
+}

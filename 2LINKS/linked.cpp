@@ -1,0 +1,112 @@
+#include<iostream>
+using namespace std;
+template<class Type>
+class listElm
+{
+private:
+    Type data;
+    listElm * next;
+public:
+    listElm():data((Type)NULL),next((listElm*)NULL){}
+    listElm(Type d):data(d),next((listElm*)NULL){}
+    ~listElm(){}
+    void setNext(listElm * n){next=n;}
+    void setData(Type d){data=d;}
+    Type getData(){return data;}
+    listElm * getNext(){return next;}
+};
+
+void print(listElm<int> * head){
+    if(head->getData()!=(int)NULL)
+        cout<<head->getData()<<' ';
+    else {
+        cerr<<"List is empty!"<<endl;
+        return;
+    }
+    listElm<int> *h=head;
+    while(h->getNext()!=(listElm<int> *)NULL){
+        h=h->getNext();
+        cout<<h->getData()<<' ';
+    }
+    cout<<endl;
+}
+
+void prepend(listElm<int> *&head,int d){
+    if(head->getData()==(int)NULL) {
+        head->setData(d);
+    }
+    else {
+        listElm<int> *newElm=new listElm<int>(d);
+        newElm->setNext(head);
+        head=newElm;
+    }
+}
+void append(listElm<int> *head,int d){
+    listElm<int> *current=new listElm<int>();
+    current=head;
+    if(current->getData()==(int)NULL){
+        current->setData(d);
+        return;
+    }
+    while(current->getNext()!=(listElm<int>*)NULL){
+        current=current->getNext();
+    }
+    listElm<int> *newElm=new listElm<int>(d);
+    current->setNext(newElm);
+}
+void insertion(int d,listElm<int> * ptr){}
+void deletion(int d,listElm<int> *ptr){}
+
+void reverse(listElm<int> *&ptr){
+    listElm<int> **p=new listElm<int> *[5],*temp=ptr;
+    int i=0;
+    while(temp!=NULL){
+        p[i++]=temp;
+        temp=temp->getNext();
+    }
+    while(i>1){
+        i--;
+        p[i]->setNext(p[i-1]);
+    }
+    ptr=p[4];
+    p[0]->setNext(NULL);
+}
+
+void reverse2(listElm<int> *&ptr){
+    listElm<int> *head,*nxt,*temp;
+    head=ptr;nxt=head->getNext();
+    while(nxt!=NULL){
+        temp=nxt->getNext();
+        nxt->setNext(head);
+        head=nxt;
+        nxt=temp;
+    }
+    ptr->setNext(NULL);
+    ptr=head;
+}
+
+int lastK(listElm<int> * ptr,int k){
+    if(ptr==NULL)
+        return 0;
+    int i=lastK(ptr->getNext(),k)+1;
+    if(k==i)
+        cout<<ptr->getData()<<endl;
+    return i;
+}
+
+int main()
+{
+    listElm<int> * head=new listElm<int>();
+    print(head);
+    prepend(head,3);
+    prepend(head,9);
+    append(head,6);
+    append(head,4);
+    prepend(head,5);
+    print(head);
+    reverse(head);
+    print(head);
+    reverse2(head);
+    print(head);
+    lastK(head,2);
+}
